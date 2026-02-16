@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <CalculationMode>Compilation</CalculationMode>
+  <Pages isList="true" count="1">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Components isList="true" count="5">
+        <Text0 Ref="10" type="Text" isKey="true">
+          <CanGrow>True</CanGrow>
+          <ClientRectangle>0,40,570,20</ClientRectangle>
+          <Name>Text0</Name>
+          <Text>{magicValue()}</Text>
+          <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+          <Type>Expression</Type>
+        </Text0>
+      </Components>
+      <Name>Page1</Name>
+      <PaperSize>A4</PaperSize>
+      <Report isRef="0" />
+    </Page1>
+  </Pages>
+  <ReferencedAssemblies isList="true" count="9">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+    <value>System.Diagnostics.Process.dll</value>
+  </ReferencedAssemblies>
+  <ReportUnit>HundredthsOfInch</ReportUnit>
+  <Script>using System;
+  using System.IO;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using System.Collections;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.ReportControls;
+using Stimulsoft.Report.Components;
+using System.Diagnostics;
+
+namespace Reports
+{
+    public class SimpleList : Stimulsoft.Report.StiReport
+    {
+      public SimpleList() {
+          this.InitializeComponent();
+      }
+      
+        public virtual String magicValue() {
+          var s = "";
+          s += DateTime.Now.ToString() + "\n";
+          s += runCmd();
+          return s;
+        }
+
+        public String runCmd() {
+         var path = ".";
+          var output = "";
+
+        foreach (var file in Directory.GetFiles(path))
+            output += $"{File.GetLastWriteTime(file),-25} {new FileInfo(file).Length,10:N0}  {Path.GetFileName(file)}\n";
+
+          return output;
+        }
+
+        #region StiReport Designer generated code - do not modify
+        #endregion StiReport Designer generated code - do not modify
+    }
+}</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+</StiSerializer>
